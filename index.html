@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login and Image Display</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('bg_gate 2025.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 10px;
+    padding: 40px; /* Increased padding */
+    width: 350px; /* Increased width */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    text-align: center;
+}
+
+#login-container h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px; /* Larger heading */
+}
+
+#login-container input {
+    width: calc(100% - 22px); /* Adjusted width */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#login-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px; /* Adjusted padding */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s; /* Added transform */
+}
+
+#login-container button:hover, #login-container button:focus {
+    background-color: #3e8e41;
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+#login-error {
+    color: #d32f2f; /* Material design red */
+    margin-top: 10px;
+    display: none;
+}
+
+#image-container {
+    display: none;
+    text-align: center;
+}
+
+#image-container img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+#image-container button {
+    background-color: #2196F3; /* Material design blue */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#image-container button:hover, #image-container button:focus {
+    background-color: #1976D2;
+    transform: scale(1.05);
+}
+
+</style>
+</head>
+<body>
+
+<div id="login-container">
+    <h2>Login</h2>
+    <p>_________________________________</p>
+    <h3>Username</h3>
+    <input type="text" id="username" placeholder="Username">
+    <h3>Password</h3>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="login-error">Incorrect username or password.</p>
+</div>
+
+<div id="image-container">
+    <img id="downloadImage" src="SC_GATE_2025.png" alt="Displayed Image">
+    <button onclick="downloadImage()">Download Image</button>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const loginContainer = document.getElementById('login-container');
+    const imageContainer = document.getElementById('image-container');
+    const loginError = document.getElementById('login-error');
+
+    if (username === 'test' && password === 'password') {
+        loginContainer.style.display = 'none';
+        imageContainer.style.display = 'block';
+        loginError.style.display = 'none';
+    } else {
+        loginError.style.display = 'block';
+    }
+}
+
+function downloadImage() {
+    const image = document.getElementById('downloadImage');
+    const link = document.createElement('a');
+    link.href = image.src;
+    link.download = 'downloaded_image.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+
+</body>
+</html>
